@@ -1,12 +1,26 @@
 package io.github.otavioxavier.domain.entity;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table( name = "item_pedido")
 public class ItemPedido {
 
-    private Pedido pedido;
-    private Produto produto;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column( name = "id" )
     private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "id_pedido")
+    private Pedido pedido;
+
+    @ManyToOne
+    @JoinColumn(name = "id_produto")
+    private Produto produto;
+
+    @Column( name = "amount")
     private BigDecimal amount;
 
     public Pedido getPedido() {
