@@ -1,11 +1,20 @@
 package io.github.otavioxavier.domain.entity;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table( name = "Produto" )
 public class Produto {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column( name = "id" )
     private Integer id;
+
+    @Column( name = "description")
     private String description;
+
+    @Column( name = "unit_price" )
     private BigDecimal unitPrice;
 
     public BigDecimal getUnitPrice() {

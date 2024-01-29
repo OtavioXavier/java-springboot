@@ -1,6 +1,7 @@
 package io.github.otavioxavier.domain.entity;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table( name = "cliente" )
@@ -13,6 +14,9 @@ public class Cliente {
     @Column( name = "name", length = 100)
     private String name;
 
+    @OneToMany( mappedBy = "client" ) //Um cliente para muitos pedidos
+    private Set<Pedido> pedidos;
+
     public Cliente() {
     }
 
@@ -23,6 +27,14 @@ public class Cliente {
     public Cliente(Integer id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Set<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(Set<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     public Integer getId() {
